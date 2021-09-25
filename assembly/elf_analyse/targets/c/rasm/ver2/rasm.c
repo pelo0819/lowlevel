@@ -19,6 +19,6 @@ int main()
 {
     extfunc();
     func();
-    string = "sample_string";
+    string = "sample_string2";
     return 0;
 }
