@@ -1,0 +1,36 @@
+0	Section header table entry unused 
+1	Program data 
+2	Symbol table 
+3	String table 
+4	Relocation entries with addends 
+5	Symbol hash table 
+6	Dynamic linking information 
+7	Notes 
+8	Program space with no data (bss) 
+9	Relocation entries, no addends 
+10	Reserved 
+11	Dynamic linker symbol table 
+14	Array of constructors 
+15	Array of destructors 
+16	Array of pre-constructors 
+17	Section group 
+18	Extended section indeces 
+19	Number of defined types. 
+0x60000000	Start OS-specific. 
+0x6ffffff5	Object attributes. 
+0x6ffffff6	GNU-style hash table. 
+0x6ffffff7	Prelink library list 
+0x6ffffff8	Checksum for DSO content. 
+0x6ffffffa	Sun-specific low bound. 
+0x6ffffffa	Unknown
+0x6ffffffb	Unknown
+0x6ffffffc	Unknown
+0x6ffffffd	Version definition section. 
+0x6ffffffe	Version needs section. 
+0x6fffffff	Version symbol table. 
+0x6fffffff	Sun-specific high bound. 
+0x6fffffff	End OS-specific type 
+0x70000000	Start of processor-specific 
+0x7fffffff	End of processor-specific 
+0x80000000	Start of application-specific 
+0x8fffffff	End of application-specific 

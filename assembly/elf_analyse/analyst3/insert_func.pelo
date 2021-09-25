@@ -1,0 +1,171 @@
+--- ELF header ---
+base info: 
+ magic       -> [0]:0x7f
+ magic       -> [1]:0x45, E
+ magic       -> [2]:0x4c, L
+ magic       -> [3]:0x46, F
+ bit         -> [4]:0x2, 64bit
+ endian      -> [5]:0x1, ELFDATA2LSB
+ format ver  -> [6]:0x1, Current
+ os/abi      -> [7]:0x0, No extensions or unspecified
+ abi ver     -> [8]:0x0
+ reserve     -> [9]:0x0
+ reserve     -> [10]:0x0
+ reserve     -> [11]:0x0
+ reserve     -> [12]:0x0
+ reserve     -> [13]:0x0
+ reserve     -> [14]:0x0
+ reserve     -> [15]:0x0
+type: 0x1, Relocation file
+architecture: 0x3e, (null)
+version: 0x1
+entty point: 0x0
+offset to program header table from top of file: 0x0, 0byte
+offset to section header table from top of file: 0x268, 616byte
+flags: 0x0
+size of elf header: 0x40, 64byte
+size of program header: 0x0, 0byte
+num of program header: 0x0, 0
+size of section header: 0x40, 64byte
+num of section header: 0xc, 12
+index of .shstrtab section: 0xb, 11
+
+--- .text ---
+index: 27
+type: Program data 
+flags: Alloc (Occupies memory during execution), Executable, 
+addr: 0x0
+offset to section header from top of file: 0x40, 64byte
+size: 15byte
+link: 0
+info: 0
+addraign: 1
+entry size: 0
+--- .data ---
+index: 33
+type: Program data 
+flags: Writable, Alloc (Occupies memory during execution), 
+addr: 0x0
+offset to section header from top of file: 0x4f, 79byte
+size: 0byte
+link: 0
+info: 0
+addraign: 1
+entry size: 0
+--- .bss ---
+index: 39
+type: Program space with no data (bss) 
+flags: Writable, Alloc (Occupies memory during execution), 
+addr: 0x0
+offset to section header from top of file: 0x4f, 79byte
+size: 0byte
+link: 0
+info: 0
+addraign: 1
+entry size: 0
+--- .comment ---
+index: 44
+type: Program data 
+flags: Might be merged, Contains nul-terminated strings, 
+addr: 0x0
+offset to section header from top of file: 0x4f, 79byte
+size: 43byte
+link: 0
+info: 0
+addraign: 1
+entry size: 1
+--- .note.GNU-stack ---
+index: 53
+type: Program data 
+flags: 
+addr: 0x0
+offset to section header from top of file: 0x7a, 122byte
+size: 0byte
+link: 0
+info: 0
+addraign: 1
+entry size: 0
+--- .note.gnu.property ---
+index: 69
+type: Notes 
+flags: Alloc (Occupies memory during execution), 
+addr: 0x0
+offset to section header from top of file: 0x80, 128byte
+size: 32byte
+link: 0
+info: 0
+addraign: 8
+entry size: 0
+--- .eh_frame ---
+index: 93
+type: Program data 
+flags: Alloc (Occupies memory during execution), 
+addr: 0x0
+offset to section header from top of file: 0xa0, 160byte
+size: 56byte
+link: 0
+info: 0
+addraign: 8
+entry size: 0
+--- .rela.eh_frame ---
+index: 88
+type: Relocation entries with addends 
+flags: `sh_info' contains SHT index, 
+addr: 0x0
+offset to section header from top of file: 0x1e8, 488byte
+size: 24byte
+link: 9
+info: 7
+addraign: 8
+entry size: 24
+--- .symtab ---
+index: 1
+type: Symbol table 
+flags: 
+addr: 0x0
+offset to section header from top of file: 0xd8, 216byte
+size: 240byte
+link: 10
+info: 9
+addraign: 8
+entry size: 24
+--- .strtab ---
+index: 9
+type: String table 
+flags: 
+addr: 0x0
+offset to section header from top of file: 0x1c8, 456byte
+size: 27byte
+link: 0
+info: 0
+addraign: 1
+entry size: 0
+--- .shstrtab ---
+index: 17
+type: String table 
+flags: 
+addr: 0x0
+offset to section header from top of file: 0x200, 512byte
+size: 103byte
+link: 0
+info: 0
+addraign: 1
+entry size: 0
+--- Symbol Table ---
+ [  1] insert_func.c
+       value: 0x0
+       size: 0 byte
+       high : 0, low : 4
+       scope: Local symbol
+       type : Symbol's name is file name
+       other: 0
+       seiction name(shndx) 65521 ABS ( Associated symbol is absolute )
+ [  9] insert_func
+       value: 0x0
+       size: 15 byte
+       high : 1, low : 2
+       scope: Global symbol
+       type : Symbol is a code object
+       other: 0
+       seiction name(shndx) 1 .text
+--- Relocation Table ---

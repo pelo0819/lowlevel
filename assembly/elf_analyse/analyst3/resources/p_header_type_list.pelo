@@ -1,0 +1,18 @@
+0	Program header table entry unused
+1	Loadable program segment
+2	Dynamic linking information
+3	Program interpreter
+4	Auxiliary information
+5	Reserved
+6	Entry for header table itself
+7	Thread-local storage segment
+8	Number of defined types
+1610612736	Start of OS-specific
+1685382480	GCC .eh_frame_hdr segment
+1685382481	Indicates stack executability
+1685382482	Read-only after relocation
+1879048186	Sun Specific segment
+1879048187	Stack segment
+1879048191	End of OS-specific
+1879048192	Start of processor-specific
+2147483647	End of processor-specific

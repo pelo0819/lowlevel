@@ -1,0 +1,13 @@
+0	Symbol type is unspecified
+1	Symbol is a data object
+2	Symbol is a code object
+3	Symbol associated with a section
+4	Symbol's name is file name
+5	Symbol is a common data object
+6	Symbol is thread-local data object
+7	Number of defined types.
+10	Start of OS-specific
+10	Symbol is indirect code object
+12	End of OS-specific
+13	Start of processor-specific
+15	End of processor-specific

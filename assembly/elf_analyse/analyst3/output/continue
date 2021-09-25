@@ -1,0 +1,860 @@
+--- ELF header ---
+base info: 
+ magic       -> [0]:0x7f
+ magic       -> [1]:0x45, E
+ magic       -> [2]:0x4c, L
+ magic       -> [3]:0x46, F
+ bit         -> [4]:0x2, 64bit
+ endian      -> [5]:0x1, ELFDATA2LSB
+ format ver  -> [6]:0x1, Current
+ os/abi      -> [7]:0x0, No extensions or unspecified
+ abi ver     -> [8]:0x0
+ reserve     -> [9]:0x0
+ reserve     -> [10]:0x0
+ reserve     -> [11]:0x0
+ reserve     -> [12]:0x0
+ reserve     -> [13]:0x0
+ reserve     -> [14]:0x0
+ reserve     -> [15]:0x0
+type: 0x3, Shared object file
+architecture: 0x3e, (null)
+version: 0x1
+entty point: 0x1140
+offset to program header table from top of file: 0x40, 64byte
+offset to section header table from top of file: 0x3b80, 15232byte
+flags: 0x0
+size of elf header: 0x40, 64byte
+size of program header: 0x38, 56byte
+num of program header: 0xd, 13
+size of section header: 0x40, 64byte
+num of section header: 0x1f, 31
+index of .shstrtab section: 0x1e, 30
+
+--- .interp ---
+index: 27
+type: Program data 
+flags: Alloc (Occupies memory during execution), 
+addr: 0x318
+offset to section header from top of file: 0x318, 792byte
+size: 28byte
+link: 0
+info: 0
+addraign: 1
+entry size: 0
+--- .note.gnu.property ---
+index: 35
+type: Notes 
+flags: Alloc (Occupies memory during execution), 
+addr: 0x338
+offset to section header from top of file: 0x338, 824byte
+size: 32byte
+link: 0
+info: 0
+addraign: 8
+entry size: 0
+--- .note.gnu.build-id ---
+index: 54
+type: Notes 
+flags: Alloc (Occupies memory during execution), 
+addr: 0x358
+offset to section header from top of file: 0x358, 856byte
+size: 36byte
+link: 0
+info: 0
+addraign: 4
+entry size: 0
+--- .note.ABI-tag ---
+index: 73
+type: Notes 
+flags: Alloc (Occupies memory during execution), 
+addr: 0x37c
+offset to section header from top of file: 0x37c, 892byte
+size: 32byte
+link: 0
+info: 0
+addraign: 4
+entry size: 0
+--- .gnu.hash ---
+index: 87
+type: (null)
+flags: Alloc (Occupies memory during execution), 
+addr: 0x3a0
+offset to section header from top of file: 0x3a0, 928byte
+size: 36byte
+link: 6
+info: 0
+addraign: 8
+entry size: 0
+--- .dynsym ---
+index: 97
+type: Dynamic linker symbol table 
+flags: Alloc (Occupies memory during execution), 
+addr: 0x3c8
+offset to section header from top of file: 0x3c8, 968byte
+size: 336byte
+link: 7
+info: 1
+addraign: 8
+entry size: 24
+--- .dynstr ---
+index: 105
+type: String table 
+flags: Alloc (Occupies memory during execution), 
+addr: 0x518
+offset to section header from top of file: 0x518, 1304byte
+size: 196byte
+link: 0
+info: 0
+addraign: 1
+entry size: 0
+--- .gnu.version ---
+index: 113
+type: (null)
+flags: Alloc (Occupies memory during execution), 
+addr: 0x5dc
+offset to section header from top of file: 0x5dc, 1500byte
+size: 28byte
+link: 6
+info: 0
+addraign: 2
+entry size: 2
+--- .gnu.version_r ---
+index: 126
+type: (null)
+flags: Alloc (Occupies memory during execution), 
+addr: 0x5f8
+offset to section header from top of file: 0x5f8, 1528byte
+size: 48byte
+link: 7
+info: 1
+addraign: 8
+entry size: 0
+--- .rela.dyn ---
+index: 141
+type: Relocation entries with addends 
+flags: Alloc (Occupies memory during execution), 
+addr: 0x628
+offset to section header from top of file: 0x628, 1576byte
+size: 192byte
+link: 6
+info: 0
+addraign: 8
+entry size: 24
+--- .rela.plt ---
+index: 151
+type: Relocation entries with addends 
+flags: Alloc (Occupies memory during execution), `sh_info' contains SHT index, 
+addr: 0x6e8
+offset to section header from top of file: 0x6e8, 1768byte
+size: 192byte
+link: 6
+info: 24
+addraign: 8
+entry size: 24
+--- .init ---
+index: 161
+type: Program data 
+flags: Alloc (Occupies memory during execution), Executable, 
+addr: 0x1000
+offset to section header from top of file: 0x1000, 4096byte
+size: 27byte
+link: 0
+info: 0
+addraign: 4
+entry size: 0
+--- .plt ---
+index: 156
+type: Program data 
+flags: Alloc (Occupies memory during execution), Executable, 
+addr: 0x1020
+offset to section header from top of file: 0x1020, 4128byte
+size: 144byte
+link: 0
+info: 0
+addraign: 16
+entry size: 16
+--- .plt.got ---
+index: 167
+type: Program data 
+flags: Alloc (Occupies memory during execution), Executable, 
+addr: 0x10b0
+offset to section header from top of file: 0x10b0, 4272byte
+size: 16byte
+link: 0
+info: 0
+addraign: 16
+entry size: 16
+--- .plt.sec ---
+index: 176
+type: Program data 
+flags: Alloc (Occupies memory during execution), Executable, 
+addr: 0x10c0
+offset to section header from top of file: 0x10c0, 4288byte
+size: 128byte
+link: 0
+info: 0
+addraign: 16
+entry size: 16
+--- .text ---
+index: 185
+type: Program data 
+flags: Alloc (Occupies memory during execution), Executable, 
+addr: 0x1140
+offset to section header from top of file: 0x1140, 4416byte
+size: 1651byte
+link: 0
+info: 0
+addraign: 16
+entry size: 0
+--- .fini ---
+index: 191
+type: Program data 
+flags: Alloc (Occupies memory during execution), Executable, 
+addr: 0x17b4
+offset to section header from top of file: 0x17b4, 6068byte
+size: 13byte
+link: 0
+info: 0
+addraign: 4
+entry size: 0
+--- .rodata ---
+index: 197
+type: Program data 
+flags: Alloc (Occupies memory during execution), 
+addr: 0x2000
+offset to section header from top of file: 0x2000, 8192byte
+size: 633byte
+link: 0
+info: 0
+addraign: 8
+entry size: 0
+--- .eh_frame_hdr ---
+index: 205
+type: Program data 
+flags: Alloc (Occupies memory during execution), 
+addr: 0x227c
+offset to section header from top of file: 0x227c, 8828byte
+size: 100byte
+link: 0
+info: 0
+addraign: 4
+entry size: 0
+--- .eh_frame ---
+index: 219
+type: Program data 
+flags: Alloc (Occupies memory during execution), 
+addr: 0x22e0
+offset to section header from top of file: 0x22e0, 8928byte
+size: 384byte
+link: 0
+info: 0
+addraign: 8
+entry size: 0
+--- .init_array ---
+index: 229
+type: Array of constructors 
+flags: Writable, Alloc (Occupies memory during execution), 
+addr: 0x3d80
+offset to section header from top of file: 0x2d80, 11648byte
+size: 8byte
+link: 0
+info: 0
+addraign: 8
+entry size: 8
+--- .fini_array ---
+index: 241
+type: Array of destructors 
+flags: Writable, Alloc (Occupies memory during execution), 
+addr: 0x3d88
+offset to section header from top of file: 0x2d88, 11656byte
+size: 8byte
+link: 0
+info: 0
+addraign: 8
+entry size: 8
+--- .dynamic ---
+index: 253
+type: Dynamic linking information 
+flags: Writable, Alloc (Occupies memory during execution), 
+addr: 0x3d90
+offset to section header from top of file: 0x2d90, 11664byte
+size: 496byte
+link: 7
+info: 0
+addraign: 8
+entry size: 16
+--- .got ---
+index: 171
+type: Program data 
+flags: Writable, Alloc (Occupies memory during execution), 
+addr: 0x3f80
+offset to section header from top of file: 0x2f80, 12160byte
+size: 128byte
+link: 0
+info: 0
+addraign: 8
+entry size: 8
+--- .data ---
+index: 262
+type: Program data 
+flags: Writable, Alloc (Occupies memory during execution), 
+addr: 0x4000
+offset to section header from top of file: 0x3000, 12288byte
+size: 16byte
+link: 0
+info: 0
+addraign: 8
+entry size: 0
+--- .bss ---
+index: 268
+type: Program space with no data (bss) 
+flags: Writable, Alloc (Occupies memory during execution), 
+addr: 0x4020
+offset to section header from top of file: 0x3010, 12304byte
+size: 160byte
+link: 0
+info: 0
+addraign: 32
+entry size: 0
+--- .comment ---
+index: 273
+type: Program data 
+flags: Might be merged, Contains nul-terminated strings, 
+addr: 0x0
+offset to section header from top of file: 0x3010, 12304byte
+size: 42byte
+link: 0
+info: 0
+addraign: 1
+entry size: 1
+--- .symtab ---
+index: 1
+type: Symbol table 
+flags: 
+addr: 0x0
+offset to section header from top of file: 0x3040, 12352byte
+size: 1872byte
+link: 29
+info: 48
+addraign: 8
+entry size: 24
+--- .strtab ---
+index: 9
+type: String table 
+flags: 
+addr: 0x0
+offset to section header from top of file: 0x3790, 14224byte
+size: 719byte
+link: 0
+info: 0
+addraign: 1
+entry size: 0
+--- .shstrtab ---
+index: 17
+type: String table 
+flags: 
+addr: 0x0
+offset to section header from top of file: 0x3a5f, 14943byte
+size: 282byte
+link: 0
+info: 0
+addraign: 1
+entry size: 0
+------
+type: 6 0x6 Entry for header table itself
+offset to program header from top of file: 0x40, 64byte
+virtual addr: 0x40, physical addr: 0x40
+file size: 0x2d8, 728byte
+memory size: 0x2d8, 728byte
+flags: Readable, 
+align: 8, vaddr%align: 0, offset%align: 0
+------
+type: 3 0x3 Program interpreter
+offset to program header from top of file: 0x318, 792byte
+virtual addr: 0x318, physical addr: 0x318
+file size: 0x1c, 28byte
+memory size: 0x1c, 28byte
+flags: Readable, 
+align: 1, vaddr%align: 0, offset%align: 0
+------
+type: 1 0x1 Loadable program segment
+offset to program header from top of file: 0x0, 0byte
+virtual addr: 0x0, physical addr: 0x0
+file size: 0x7a8, 1960byte
+memory size: 0x7a8, 1960byte
+flags: Readable, 
+align: 4096, vaddr%align: 0, offset%align: 0
+------
+type: 1 0x1 Loadable program segment
+offset to program header from top of file: 0x1000, 4096byte
+virtual addr: 0x1000, physical addr: 0x1000
+file size: 0x7c1, 1985byte
+memory size: 0x7c1, 1985byte
+flags: Exectable, Readable, 
+align: 4096, vaddr%align: 0, offset%align: 0
+------
+type: 1 0x1 Loadable program segment
+offset to program header from top of file: 0x2000, 8192byte
+virtual addr: 0x2000, physical addr: 0x2000
+file size: 0x460, 1120byte
+memory size: 0x460, 1120byte
+flags: Readable, 
+align: 4096, vaddr%align: 0, offset%align: 0
+------
+type: 1 0x1 Loadable program segment
+offset to program header from top of file: 0x2d80, 11648byte
+virtual addr: 0x3d80, physical addr: 0x3d80
+file size: 0x290, 656byte
+memory size: 0x340, 832byte
+flags: Writable, Readable, 
+align: 4096, vaddr%align: 3456, offset%align: 3456
+------
+type: 2 0x2 Dynamic linking information
+offset to program header from top of file: 0x2d90, 11664byte
+virtual addr: 0x3d90, physical addr: 0x3d90
+file size: 0x1f0, 496byte
+memory size: 0x1f0, 496byte
+flags: Writable, Readable, 
+align: 8, vaddr%align: 0, offset%align: 0
+------
+type: 4 0x4 Auxiliary information
+offset to program header from top of file: 0x338, 824byte
+virtual addr: 0x338, physical addr: 0x338
+file size: 0x20, 32byte
+memory size: 0x20, 32byte
+flags: Readable, 
+align: 8, vaddr%align: 0, offset%align: 0
+------
+type: 4 0x4 Auxiliary information
+offset to program header from top of file: 0x358, 856byte
+virtual addr: 0x358, physical addr: 0x358
+file size: 0x44, 68byte
+memory size: 0x44, 68byte
+flags: Readable, 
+align: 4, vaddr%align: 0, offset%align: 0
+------
+type: 1685382483 0x6474e553 (null)
+offset to program header from top of file: 0x338, 824byte
+virtual addr: 0x338, physical addr: 0x338
+file size: 0x20, 32byte
+memory size: 0x20, 32byte
+flags: Readable, 
+align: 8, vaddr%align: 0, offset%align: 0
+------
+type: 1685382480 0x6474e550 GCC .eh_frame_hdr segment
+offset to program header from top of file: 0x227c, 8828byte
+virtual addr: 0x227c, physical addr: 0x227c
+file size: 0x64, 100byte
+memory size: 0x64, 100byte
+flags: Readable, 
+align: 4, vaddr%align: 0, offset%align: 0
+------
+type: 1685382481 0x6474e551 Indicates stack executability
+offset to program header from top of file: 0x0, 0byte
+virtual addr: 0x0, physical addr: 0x0
+file size: 0x0, 0byte
+memory size: 0x0, 0byte
+flags: Writable, Readable, 
+align: 16, vaddr%align: 0, offset%align: 0
+------
+type: 1685382482 0x6474e552 Read-only after relocation
+offset to program header from top of file: 0x2d80, 11648byte
+virtual addr: 0x3d80, physical addr: 0x3d80
+file size: 0x280, 640byte
+memory size: 0x280, 640byte
+flags: Readable, 
+align: 1, vaddr%align: 0, offset%align: 0
+--- Symbol Table ---
+ [ 28] crtstuff.c
+       value: 0x0
+       size: 0 byte
+       high : 0, low : 4
+       scope: Local symbol
+       type : Symbol's name is file name
+       other: 0
+       seiction name(shndx) 65521 ABS ( Associated symbol is absolute )
+ [ 29] deregister_tm_clones
+       value: 0x1170
+       size: 0 byte
+       high : 0, low : 2
+       scope: Local symbol
+       type : Symbol is a code object
+       other: 0
+       seiction name(shndx) 16 .text
+ [ 30] register_tm_clones
+       value: 0x11a0
+       size: 0 byte
+       high : 0, low : 2
+       scope: Local symbol
+       type : Symbol is a code object
+       other: 0
+       seiction name(shndx) 16 .text
+ [ 31] __do_global_dtors_aux
+       value: 0x11e0
+       size: 0 byte
+       high : 0, low : 2
+       scope: Local symbol
+       type : Symbol is a code object
+       other: 0
+       seiction name(shndx) 16 .text
+ [ 32] completed.8060
+       value: 0x4020
+       size: 1 byte
+       high : 0, low : 1
+       scope: Local symbol
+       type : Symbol is a data object
+       other: 0
+       seiction name(shndx) 26 .bss
+ [ 33] __do_global_dtors_aux_fini_array_entry
+       value: 0x3d88
+       size: 0 byte
+       high : 0, low : 1
+       scope: Local symbol
+       type : Symbol is a data object
+       other: 0
+       seiction name(shndx) 22 .fini_array
+ [ 34] frame_dummy
+       value: 0x1220
+       size: 0 byte
+       high : 0, low : 2
+       scope: Local symbol
+       type : Symbol is a code object
+       other: 0
+       seiction name(shndx) 16 .text
+ [ 35] __frame_dummy_init_array_entry
+       value: 0x3d80
+       size: 0 byte
+       high : 0, low : 1
+       scope: Local symbol
+       type : Symbol is a data object
+       other: 0
+       seiction name(shndx) 21 .init_array
+ [ 36] continue.c
+       value: 0x0
+       size: 0 byte
+       high : 0, low : 4
+       scope: Local symbol
+       type : Symbol's name is file name
+       other: 0
+       seiction name(shndx) 65521 ABS ( Associated symbol is absolute )
+ [ 37] file_name.4334
+       value: 0x4040
+       size: 128 byte
+       high : 0, low : 1
+       scope: Local symbol
+       type : Symbol is a data object
+       other: 0
+       seiction name(shndx) 26 .bss
+ [ 38] crtstuff.c
+       value: 0x0
+       size: 0 byte
+       high : 0, low : 4
+       scope: Local symbol
+       type : Symbol's name is file name
+       other: 0
+       seiction name(shndx) 65521 ABS ( Associated symbol is absolute )
+ [ 39] __FRAME_END__
+       value: 0x245c
+       size: 0 byte
+       high : 0, low : 1
+       scope: Local symbol
+       type : Symbol is a data object
+       other: 0
+       seiction name(shndx) 20 .eh_frame
+ [ 41] fstat
+       value: 0x17a0
+       size: 19 byte
+       high : 0, low : 2
+       scope: Local symbol
+       type : Symbol is a code object
+       other: 0
+       seiction name(shndx) 16 .text
+ [ 42] __init_array_end
+       value: 0x3d88
+       size: 0 byte
+       high : 0, low : 0
+       scope: Local symbol
+       type : Symbol type is unspecified
+       other: 0
+       seiction name(shndx) 21 .init_array
+ [ 43] _DYNAMIC
+       value: 0x3d90
+       size: 0 byte
+       high : 0, low : 1
+       scope: Local symbol
+       type : Symbol is a data object
+       other: 0
+       seiction name(shndx) 23 .dynamic
+ [ 44] __init_array_start
+       value: 0x3d80
+       size: 0 byte
+       high : 0, low : 0
+       scope: Local symbol
+       type : Symbol type is unspecified
+       other: 0
+       seiction name(shndx) 21 .init_array
+ [ 45] __GNU_EH_FRAME_HDR
+       value: 0x227c
+       size: 0 byte
+       high : 0, low : 0
+       scope: Local symbol
+       type : Symbol type is unspecified
+       other: 0
+       seiction name(shndx) 19 .eh_frame_hdr
+ [ 46] _GLOBAL_OFFSET_TABLE_
+       value: 0x3f80
+       size: 0 byte
+       high : 0, low : 1
+       scope: Local symbol
+       type : Symbol is a data object
+       other: 0
+       seiction name(shndx) 24 .got
+ [ 47] _init
+       value: 0x1000
+       size: 0 byte
+       high : 0, low : 2
+       scope: Local symbol
+       type : Symbol is a code object
+       other: 0
+       seiction name(shndx) 12 .init
+ [ 48] __libc_csu_fini
+       value: 0x1790
+       size: 5 byte
+       high : 1, low : 2
+       scope: Global symbol
+       type : Symbol is a code object
+       other: 0
+       seiction name(shndx) 16 .text
+ [ 49] _ITM_deregisterTMCloneTable
+       value: 0x0
+       size: 0 byte
+       high : 2, low : 0
+       scope: Weak symbol
+       type : Symbol type is unspecified
+       other: 0
+       seiction name(shndx) 0 UNDEF ( Undefined section )
+ [ 50] data_start
+       value: 0x4000
+       size: 0 byte
+       high : 2, low : 0
+       scope: Weak symbol
+       type : Symbol type is unspecified
+       other: 0
+       seiction name(shndx) 25 .data
+ [ 51] strcpy@@GLIBC_2.2.5
+       value: 0x0
+       size: 0 byte
+       high : 1, low : 2
+       scope: Global symbol
+       type : Symbol is a code object
+       other: 0
+       seiction name(shndx) 0 UNDEF ( Undefined section )
+ [ 52] puts@@GLIBC_2.2.5
+       value: 0x0
+       size: 0 byte
+       high : 1, low : 2
+       scope: Global symbol
+       type : Symbol is a code object
+       other: 0
+       seiction name(shndx) 0 UNDEF ( Undefined section )
+ [ 53] _edata
+       value: 0x4010
+       size: 0 byte
+       high : 1, low : 0
+       scope: Global symbol
+       type : Symbol type is unspecified
+       other: 0
+       seiction name(shndx) 25 .data
+ [ 54] _fini
+       value: 0x17b4
+       size: 0 byte
+       high : 1, low : 2
+       scope: Global symbol
+       type : Symbol is a code object
+       other: 2
+       seiction name(shndx) 17 .fini
+ [ 55] __stack_chk_fail@@GLIBC_2.4
+       value: 0x0
+       size: 0 byte
+       high : 1, low : 2
+       scope: Global symbol
+       type : Symbol is a code object
+       other: 0
+       seiction name(shndx) 0 UNDEF ( Undefined section )
+ [ 56] mmap@@GLIBC_2.2.5
+       value: 0x0
+       size: 0 byte
+       high : 1, low : 2
+       scope: Global symbol
+       type : Symbol is a code object
+       other: 0
+       seiction name(shndx) 0 UNDEF ( Undefined section )
+ [ 57] printf@@GLIBC_2.2.5
+       value: 0x0
+       size: 0 byte
+       high : 1, low : 2
+       scope: Global symbol
+       type : Symbol is a code object
+       other: 0
+       seiction name(shndx) 0 UNDEF ( Undefined section )
+ [ 58] print_reg
+       value: 0x1531
+       size: 444 byte
+       high : 1, low : 2
+       scope: Global symbol
+       type : Symbol is a code object
+       other: 0
+       seiction name(shndx) 16 .text
+ [ 59] close@@GLIBC_2.2.5
+       value: 0x0
+       size: 0 byte
+       high : 1, low : 2
+       scope: Global symbol
+       type : Symbol is a code object
+       other: 0
+       seiction name(shndx) 0 UNDEF ( Undefined section )
+ [ 60] __libc_start_main@@GLIBC_2.2.5
+       value: 0x0
+       size: 0 byte
+       high : 1, low : 2
+       scope: Global symbol
+       type : Symbol is a code object
+       other: 0
+       seiction name(shndx) 0 UNDEF ( Undefined section )
+ [ 61] __data_start
+       value: 0x4000
+       size: 0 byte
+       high : 1, low : 0
+       scope: Global symbol
+       type : Symbol type is unspecified
+       other: 0
+       seiction name(shndx) 25 .data
+ [ 62] __gmon_start__
+       value: 0x0
+       size: 0 byte
+       high : 2, low : 0
+       scope: Weak symbol
+       type : Symbol type is unspecified
+       other: 0
+       seiction name(shndx) 0 UNDEF ( Undefined section )
+ [ 63] __dso_handle
+       value: 0x4008
+       size: 0 byte
+       high : 1, low : 1
+       scope: Global symbol
+       type : Symbol is a data object
+       other: 2
+       seiction name(shndx) 25 .data
+ [ 64] _IO_stdin_used
+       value: 0x2000
+       size: 4 byte
+       high : 1, low : 1
+       scope: Global symbol
+       type : Symbol is a data object
+       other: 0
+       seiction name(shndx) 18 .rodata
+ [ 65] __libc_csu_init
+       value: 0x1720
+       size: 101 byte
+       high : 1, low : 2
+       scope: Global symbol
+       type : Symbol is a code object
+       other: 0
+       seiction name(shndx) 16 .text
+ [ 66] __fxstat@@GLIBC_2.2.5
+       value: 0x0
+       size: 0 byte
+       high : 1, low : 2
+       scope: Global symbol
+       type : Symbol is a code object
+       other: 0
+       seiction name(shndx) 0 UNDEF ( Undefined section )
+ [ 67] _end
+       value: 0x40c0
+       size: 0 byte
+       high : 1, low : 0
+       scope: Global symbol
+       type : Symbol type is unspecified
+       other: 0
+       seiction name(shndx) 26 .bss
+ [ 68] _start
+       value: 0x1140
+       size: 47 byte
+       high : 1, low : 2
+       scope: Global symbol
+       type : Symbol is a code object
+       other: 0
+       seiction name(shndx) 16 .text
+ [ 69] roundup8bytes
+       value: 0x16ed
+       size: 44 byte
+       high : 1, low : 2
+       scope: Global symbol
+       type : Symbol is a code object
+       other: 0
+       seiction name(shndx) 16 .text
+ [ 70] __bss_start
+       value: 0x4010
+       size: 0 byte
+       high : 1, low : 0
+       scope: Global symbol
+       type : Symbol type is unspecified
+       other: 0
+       seiction name(shndx) 26 .bss
+ [ 71] main
+       value: 0x1229
+       size: 387 byte
+       high : 1, low : 2
+       scope: Global symbol
+       type : Symbol is a code object
+       other: 0
+       seiction name(shndx) 16 .text
+ [ 72] open@@GLIBC_2.2.5
+       value: 0x0
+       size: 0 byte
+       high : 1, low : 2
+       scope: Global symbol
+       type : Symbol is a code object
+       other: 0
+       seiction name(shndx) 0 UNDEF ( Undefined section )
+ [ 73] __fstat
+       value: 0x17a0
+       size: 19 byte
+       high : 1, low : 2
+       scope: Global symbol
+       type : Symbol is a code object
+       other: 2
+       seiction name(shndx) 16 .text
+ [ 74] get_note
+       value: 0x13ac
+       size: 389 byte
+       high : 1, low : 2
+       scope: Global symbol
+       type : Symbol is a code object
+       other: 0
+       seiction name(shndx) 16 .text
+ [ 75] __TMC_END__
+       value: 0x4010
+       size: 0 byte
+       high : 1, low : 1
+       scope: Global symbol
+       type : Symbol is a data object
+       other: 2
+       seiction name(shndx) 25 .data
+ [ 76] _ITM_registerTMCloneTable
+       value: 0x0
+       size: 0 byte
+       high : 2, low : 0
+       scope: Weak symbol
+       type : Symbol type is unspecified
+       other: 0
+       seiction name(shndx) 0 UNDEF ( Undefined section )
+ [ 77] __cxa_finalize@@GLIBC_2.2.5
+       value: 0x0
+       size: 0 byte
+       high : 2, low : 2
+       scope: Weak symbol
+       type : Symbol is a code object
+       other: 0
+       seiction name(shndx) 0 UNDEF ( Undefined section )
+--- Relocation Table ---
