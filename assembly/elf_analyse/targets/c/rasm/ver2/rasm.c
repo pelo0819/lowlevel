@@ -4,7 +4,7 @@ int extfunc();
 
 static int dummy_value = 3;
 static int dummy_bssvalue;
-static int value = 1;
+static int value = 21;
 static int bssvalue;
 char *string;
 
@@ -12,6 +12,7 @@ static void dummy_func(){}
 
 static int func()
 {
+    value = 5;
     return (extvalue + extbssvalue + value + bssvalue);
 }
 

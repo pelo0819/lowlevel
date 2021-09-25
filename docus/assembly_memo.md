@@ -28,4 +28,19 @@
     115b:	c3                   	retq  
  0x401cは、実行形式(rasm)を`readelf -S -r -s rasm`した時の、  
  シンボルテーブルにあるextvalueの値と一致する  
+
+ - `./assembly/elf_analyse/targets/c/rasm/ver2`内のrasm.cにおけるstatic変数に関して  
+  1. 初期化  
+   object file(rasm.o)をreadelfした結果(readelf_rasm_o.pelo)に着目    
+   `value`は、Ndx=3でValue=0x4である  
+   Ndxはセクション番号でSection Headersを見ると.data Sectionである  
+   かつ、.data Sectionは、object fileの先頭から0xb0位置から開始している  
+   Valueはセクション先頭からのオフセットなので、`value`は、object fileの先頭から0xb4位置に格納させる  
+   object fileをhex表記で出力した結果(hex_rasm_o.pelo)の0xb4に着目すると0x15(=21)であることが確認できる  
+   最後にrasm.cを見てみると、value=21で初期化していることがわかる  
+ 1. 代入  
+   objdump_rasm_o.peloに着目するとオフセット0x13,0x2bで`value`の代入および加算が行われていることが何となくわかる  
+   readelf_rasm_o.peloのRelocation section .rela.textの1,4行目で.data Sectionに関する情報がある  
+   各Offsetは、0x15,0x2bであり、リンカはこの情報をもとにリンク時に再配置を行う    
+
  
