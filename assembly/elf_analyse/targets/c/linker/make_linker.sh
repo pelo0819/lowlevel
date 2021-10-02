@@ -7,7 +7,7 @@ gcc -c sample2.c -o sample2.o -fno-builtin
 gcc -c crt.c -o crt.o -fno-builtin
 
 # link
-# gcc main.o sample.o sample2.o service.o crt.o -o sample -nostdlib
-gcc main.o sample.o sample2.o service.o crt.o -o sample
+gcc main.o sample.o sample2.o service.o crt.o -o sample -nostdlib
+# gcc main.o sample.o sample2.o service.o crt.o -o sample
  
 

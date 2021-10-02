@@ -7,10 +7,13 @@ extern main
 [section .data]
 
 [section .text]
-;_start:
-;        call main
-;        call pexit
-;        ret
+_start:
+        ; osカーネルがコマンドライン引数を
+        ; 設定した状態でプロセスが始まる
+        pop rdi ; argcをrdiにpop
+        mov rsi, rsp ; 
+        call main
+        call pexit
 
 ; nullで終わる文字列ポインタの文字列の長さを取得する
 ; arg -> rdi : ポインタ

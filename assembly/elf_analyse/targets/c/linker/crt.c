@@ -14,13 +14,13 @@ void exit(int status)
 
 // void _start(char *arguments, ...)
 // {
-//     // int argc;
-//     // char **argv;
-//     // char **env;
+//     int argc;
+//     char **argv;
+//     char **env;
 
-//     // argv = &arguments;
-//     // argc = * (int *)(argv - 1);
-//     // env = argv + argc + 1;
+//     argv = &arguments;
+//     argc = * (int *)(argv - 1);
+//     env = argv + argc + 1;
 
-//     // exit( main(argc, argv) );
+//     exit( main(argc, argv) );
 // }
