@@ -1,6 +1,7 @@
 ## すぐ忘れるのでapache2のメモ
 
-- apache2の起動
+- apache2の起動  
+service appache2 start
 
 - DocumentRootの変更  
 `/etc/apache2/sites-available/000-default.conf`の`DocumentRoot`を変更

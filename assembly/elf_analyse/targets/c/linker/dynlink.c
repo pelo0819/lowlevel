@@ -7,6 +7,7 @@
 #include "linklib.h"
 
 #define Align_4KB 4095
+#define Align_16B 15
 
 int main(int argc, char *argv[])
 {
@@ -33,9 +34,47 @@ int main(int argc, char *argv[])
 
     for(n = 0, i =2 ;i < argc; n++, i++)
     {
+        objs[n].filename = argv[i];
+        fp = fopen(objs[n].filename, "rb");
+        if(!fp)
+        {
+            printf("[!!!] cannot open flie %s\n", objs[n].filename);
+            return 1;
+        }
+        objs[n].address = p;
+        printf("[*] load to %p (%s)\n", p, objs[n].filename);
+        while ((c = fgetc(fp)) != EOF)
+        {
+            *(p++) = c;
+        }
+        fclose(fp);
 
+        p = (char *)(((u_int64_t)p + Align_16B) & ~Align_16B);
+
+        check_ehdr((Elf64_Ehdr *)objs[n].address);
+        relocate_common_symbol((Elf64_Ehdr *)objs[n].address);
+
+        shdr = get_section((Elf64_Ehdr *)objs[n].address, ".bss");
+        if(shdr)
+        {
+            shdr->sh_offset = p - objs[n].address;
+            memset(p, 0, shdr->sh_size);
+            p += shdr->sh_size;
+        }
+
+        p = (char *)(((u_int64_t)p + Align_16B) & ~Align_16B);
     }
 
+    objs[n].address = NULL;
+    objs[n].filename = NULL;
+
+    link_objs(objs);
+    search_symbol(objs, funcname, &obj);
+    f = (int (*)())obj.address;
+    printf("[*] \n%s is found at 0x%p (%s).\n\n", funcname, f, obj.filename);
+
+    ret = f();
+    printf("\n%s return (%d)\n", funcname, ret);
 
     return 0;
 }
