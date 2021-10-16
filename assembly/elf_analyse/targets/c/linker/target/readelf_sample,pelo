@@ -1,0 +1,97 @@
+There are 17 section headers, starting at offset 0x35c8:
+
+Section Headers:
+  [Nr] Name              Type             Address           Offset
+       Size              EntSize          Flags  Link  Info  Align
+  [ 0]                   NULL             0000000000000000  00000000
+       0000000000000000  0000000000000000           0     0     0
+  [ 1] .interp           PROGBITS         00000000000002a8  000002a8
+       000000000000001c  0000000000000000   A       0     0     1
+  [ 2] .note.gnu.build-i NOTE             00000000000002c4  000002c4
+       0000000000000024  0000000000000000   A       0     0     4
+  [ 3] .gnu.hash         GNU_HASH         00000000000002e8  000002e8
+       000000000000001c  0000000000000000   A       4     0     8
+  [ 4] .dynsym           DYNSYM           0000000000000308  00000308
+       0000000000000018  0000000000000018   A       5     1     8
+  [ 5] .dynstr           STRTAB           0000000000000320  00000320
+       0000000000000001  0000000000000000   A       0     0     1
+  [ 6] .text             PROGBITS         0000000000001000  00001000
+       00000000000003bc  0000000000000000  AX       0     0     16
+  [ 7] .rodata           PROGBITS         0000000000002000  00002000
+       0000000000000075  0000000000000000   A       0     0     1
+  [ 8] .eh_frame_hdr     PROGBITS         0000000000002078  00002078
+       0000000000000054  0000000000000000   A       0     0     4
+  [ 9] .eh_frame         PROGBITS         00000000000020d0  000020d0
+       0000000000000138  0000000000000000   A       0     0     8
+  [10] .dynamic          DYNAMIC          0000000000003f20  00002f20
+       00000000000000e0  0000000000000010  WA       5     0     8
+  [11] .data             PROGBITS         0000000000004000  00003000
+       0000000000000008  0000000000000000  WA       0     0     4
+  [12] .bss              NOBITS           0000000000004008  00003008
+       0000000000000008  0000000000000000  WA       0     0     4
+  [13] .comment          PROGBITS         0000000000000000  00003008
+       000000000000002a  0000000000000001  MS       0     0     1
+  [14] .symtab           SYMTAB           0000000000000000  00003038
+       0000000000000420  0000000000000018          15    29     8
+  [15] .strtab           STRTAB           0000000000000000  00003458
+       00000000000000d8  0000000000000000           0     0     1
+  [16] .shstrtab         STRTAB           0000000000000000  00003530
+       0000000000000093  0000000000000000           0     0     1
+Key to Flags:
+  W (write), A (alloc), X (execute), M (merge), S (strings), I (info),
+  L (link order), O (extra OS processing required), G (group), T (TLS),
+  C (compressed), x (unknown), o (OS specific), E (exclude),
+  l (large), p (processor specific)
+
+There are no relocations in this file.
+
+Symbol table '.dynsym' contains 1 entry:
+   Num:    Value          Size Type    Bind   Vis      Ndx Name
+     0: 0000000000000000     0 NOTYPE  LOCAL  DEFAULT  UND 
+
+Symbol table '.symtab' contains 44 entries:
+   Num:    Value          Size Type    Bind   Vis      Ndx Name
+     0: 0000000000000000     0 NOTYPE  LOCAL  DEFAULT  UND 
+     1: 00000000000002a8     0 SECTION LOCAL  DEFAULT    1 
+     2: 00000000000002c4     0 SECTION LOCAL  DEFAULT    2 
+     3: 00000000000002e8     0 SECTION LOCAL  DEFAULT    3 
+     4: 0000000000000308     0 SECTION LOCAL  DEFAULT    4 
+     5: 0000000000000320     0 SECTION LOCAL  DEFAULT    5 
+     6: 0000000000001000     0 SECTION LOCAL  DEFAULT    6 
+     7: 0000000000002000     0 SECTION LOCAL  DEFAULT    7 
+     8: 0000000000002078     0 SECTION LOCAL  DEFAULT    8 
+     9: 00000000000020d0     0 SECTION LOCAL  DEFAULT    9 
+    10: 0000000000003f20     0 SECTION LOCAL  DEFAULT   10 
+    11: 0000000000004000     0 SECTION LOCAL  DEFAULT   11 
+    12: 0000000000004008     0 SECTION LOCAL  DEFAULT   12 
+    13: 0000000000000000     0 SECTION LOCAL  DEFAULT   13 
+    14: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS main.c
+    15: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS sample.c
+    16: 0000000000004000     4 OBJECT  LOCAL  DEFAULT   11 value
+    17: 0000000000004008     4 OBJECT  LOCAL  DEFAULT   12 bssvalue
+    18: 00000000000011ee   200 FUNC    LOCAL  DEFAULT    6 func
+    19: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS sample2.c
+    20: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS service.asm
+    21: 000000000000134e     0 NOTYPE  LOCAL  DEFAULT    6 string_length
+    22: 0000000000001351     0 NOTYPE  LOCAL  DEFAULT    6 iterate_strlen
+    23: 000000000000135c     0 NOTYPE  LOCAL  DEFAULT    6 end
+    24: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS crt.c
+    25: 0000000000001384    28 FUNC    LOCAL  DEFAULT    6 _exit
+    26: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS 
+    27: 0000000000003f20     0 OBJECT  LOCAL  DEFAULT   10 _DYNAMIC
+    28: 0000000000002078     0 NOTYPE  LOCAL  DEFAULT    8 __GNU_EH_FRAME_HDR
+    29: 000000000000135d     0 NOTYPE  GLOBAL DEFAULT    6 pprint
+    30: 0000000000001304    46 FUNC    GLOBAL DEFAULT    6 extfunc
+    31: 0000000000001091   244 FUNC    GLOBAL DEFAULT    6 itoa
+    32: 0000000000001000    11 FUNC    GLOBAL DEFAULT    6 __stack_chk_fail
+    33: 0000000000001185   105 FUNC    GLOBAL DEFAULT    6 pprintn
+    34: 00000000000012b6    78 FUNC    GLOBAL DEFAULT    6 sample_main
+    35: 0000000000004004     4 OBJECT  GLOBAL DEFAULT   11 extvalue
+    36: 0000000000001340     0 NOTYPE  GLOBAL DEFAULT    6 _start
+    37: 0000000000001379     0 NOTYPE  GLOBAL DEFAULT    6 pexit
+    38: 0000000000004008     0 NOTYPE  GLOBAL DEFAULT   12 __bss_start
+    39: 000000000000100b   134 FUNC    GLOBAL DEFAULT    6 main
+    40: 0000000000004008     0 NOTYPE  GLOBAL DEFAULT   11 _edata
+    41: 0000000000004010     0 NOTYPE  GLOBAL DEFAULT   12 _end
+    42: 00000000000013a0    28 FUNC    GLOBAL DEFAULT    6 exit
+    43: 000000000000400c     4 OBJECT  GLOBAL DEFAULT   12 extbssvalue

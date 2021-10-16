@@ -1,0 +1,70 @@
+
+sample.o:     file format elf64-x86-64
+
+
+Disassembly of section .text:
+
+0000000000000000 <func>:
+   0:	f3 0f 1e fa          	endbr64 
+   4:	55                   	push   %rbp
+   5:	48 89 e5             	mov    %rsp,%rbp
+   8:	48 8d 3d 00 00 00 00 	lea    0x0(%rip),%rdi        # f <func+0xf>
+   f:	e8 00 00 00 00       	callq  14 <func+0x14>
+  14:	48 8d 3d 00 00 00 00 	lea    0x0(%rip),%rdi        # 1b <func+0x1b>
+  1b:	e8 00 00 00 00       	callq  20 <func+0x20>
+  20:	8b 05 00 00 00 00    	mov    0x0(%rip),%eax        # 26 <func+0x26>
+  26:	89 c7                	mov    %eax,%edi
+  28:	e8 00 00 00 00       	callq  2d <func+0x2d>
+  2d:	48 8d 3d 00 00 00 00 	lea    0x0(%rip),%rdi        # 34 <func+0x34>
+  34:	e8 00 00 00 00       	callq  39 <func+0x39>
+  39:	48 8d 3d 00 00 00 00 	lea    0x0(%rip),%rdi        # 40 <func+0x40>
+  40:	e8 00 00 00 00       	callq  45 <func+0x45>
+  45:	8b 05 00 00 00 00    	mov    0x0(%rip),%eax        # 4b <func+0x4b>
+  4b:	89 c7                	mov    %eax,%edi
+  4d:	e8 00 00 00 00       	callq  52 <func+0x52>
+  52:	48 8d 3d 00 00 00 00 	lea    0x0(%rip),%rdi        # 59 <func+0x59>
+  59:	e8 00 00 00 00       	callq  5e <func+0x5e>
+  5e:	48 8d 3d 00 00 00 00 	lea    0x0(%rip),%rdi        # 65 <func+0x65>
+  65:	e8 00 00 00 00       	callq  6a <func+0x6a>
+  6a:	8b 05 00 00 00 00    	mov    0x0(%rip),%eax        # 70 <func+0x70>
+  70:	89 c7                	mov    %eax,%edi
+  72:	e8 00 00 00 00       	callq  77 <func+0x77>
+  77:	48 8d 3d 00 00 00 00 	lea    0x0(%rip),%rdi        # 7e <func+0x7e>
+  7e:	e8 00 00 00 00       	callq  83 <func+0x83>
+  83:	48 8d 3d 00 00 00 00 	lea    0x0(%rip),%rdi        # 8a <func+0x8a>
+  8a:	e8 00 00 00 00       	callq  8f <func+0x8f>
+  8f:	8b 05 00 00 00 00    	mov    0x0(%rip),%eax        # 95 <func+0x95>
+  95:	89 c7                	mov    %eax,%edi
+  97:	e8 00 00 00 00       	callq  9c <func+0x9c>
+  9c:	48 8d 3d 00 00 00 00 	lea    0x0(%rip),%rdi        # a3 <func+0xa3>
+  a3:	e8 00 00 00 00       	callq  a8 <func+0xa8>
+  a8:	8b 15 00 00 00 00    	mov    0x0(%rip),%edx        # ae <func+0xae>
+  ae:	8b 05 00 00 00 00    	mov    0x0(%rip),%eax        # b4 <func+0xb4>
+  b4:	01 c2                	add    %eax,%edx
+  b6:	8b 05 00 00 00 00    	mov    0x0(%rip),%eax        # bc <func+0xbc>
+  bc:	01 c2                	add    %eax,%edx
+  be:	8b 05 00 00 00 00    	mov    0x0(%rip),%eax        # c4 <func+0xc4>
+  c4:	01 d0                	add    %edx,%eax
+  c6:	5d                   	pop    %rbp
+  c7:	c3                   	retq   
+
+00000000000000c8 <sample_main>:
+  c8:	f3 0f 1e fa          	endbr64 
+  cc:	55                   	push   %rbp
+  cd:	48 89 e5             	mov    %rsp,%rbp
+  d0:	48 83 ec 10          	sub    $0x10,%rsp
+  d4:	b8 00 00 00 00       	mov    $0x0,%eax
+  d9:	e8 22 ff ff ff       	callq  0 <func>
+  de:	89 45 fc             	mov    %eax,-0x4(%rbp)
+  e1:	48 8d 3d 00 00 00 00 	lea    0x0(%rip),%rdi        # e8 <sample_main+0x20>
+  e8:	e8 00 00 00 00       	callq  ed <sample_main+0x25>
+  ed:	48 8d 3d 00 00 00 00 	lea    0x0(%rip),%rdi        # f4 <sample_main+0x2c>
+  f4:	e8 00 00 00 00       	callq  f9 <sample_main+0x31>
+  f9:	8b 45 fc             	mov    -0x4(%rbp),%eax
+  fc:	89 c7                	mov    %eax,%edi
+  fe:	e8 00 00 00 00       	callq  103 <sample_main+0x3b>
+ 103:	48 8d 3d 00 00 00 00 	lea    0x0(%rip),%rdi        # 10a <sample_main+0x42>
+ 10a:	e8 00 00 00 00       	callq  10f <sample_main+0x47>
+ 10f:	b8 00 00 00 00       	mov    $0x0,%eax
+ 114:	c9                   	leaveq 
+ 115:	c3                   	retq   
