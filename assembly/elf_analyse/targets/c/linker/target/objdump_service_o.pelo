@@ -1,0 +1,42 @@
+
+service.o:     file format elf64-x86-64
+
+
+Disassembly of section .text:
+
+0000000000000000 <_start>:
+   0:	5f                   	pop    %rdi
+   1:	48 89 e6             	mov    %rsp,%rsi
+   4:	e8 00 00 00 00       	callq  9 <_start+0x9>
+   9:	e8 2b 00 00 00       	callq  39 <pexit>
+
+000000000000000e <string_length>:
+   e:	48 31 c0             	xor    %rax,%rax
+
+0000000000000011 <iterate_strlen>:
+  11:	80 3c 07 00          	cmpb   $0x0,(%rdi,%rax,1)
+  15:	74 05                	je     1c <end>
+  17:	48 ff c0             	inc    %rax
+  1a:	eb f5                	jmp    11 <iterate_strlen>
+
+000000000000001c <end>:
+  1c:	c3                   	retq   
+
+000000000000001d <pprint>:
+  1d:	51                   	push   %rcx
+  1e:	52                   	push   %rdx
+  1f:	48 89 fe             	mov    %rdi,%rsi
+  22:	e8 e7 ff ff ff       	callq  e <string_length>
+  27:	48 89 c2             	mov    %rax,%rdx
+  2a:	b8 01 00 00 00       	mov    $0x1,%eax
+  2f:	bf 01 00 00 00       	mov    $0x1,%edi
+  34:	0f 05                	syscall 
+  36:	5a                   	pop    %rdx
+  37:	59                   	pop    %rcx
+  38:	c3                   	retq   
+
+0000000000000039 <pexit>:
+  39:	b8 3c 00 00 00       	mov    $0x3c,%eax
+  3e:	48 31 ff             	xor    %rdi,%rdi
+  41:	0f 05                	syscall 
+  43:	c3                   	retq   

@@ -9,6 +9,8 @@
 #define Align_4KB 4095
 #define Align_16B 15
 
+extern int jump(void* e);
+
 int main(int argc, char *argv[])
 {
     int i;
@@ -23,6 +25,8 @@ int main(int argc, char *argv[])
     int (*f)();
     Elf64_Shdr *shdr;
     static char buffer[64 * 1024];
+
+    u_int64_t addr_sample_o;
 
     memset(buffer, 0, sizeof(buffer));
     p = buffer;
@@ -63,6 +67,12 @@ int main(int argc, char *argv[])
         }
 
         p = (char *)(((u_int64_t)p + Align_16B) & ~Align_16B);
+        
+        if(n == 0)
+        {
+            addr_sample_o = (u_int64_t)p;
+            printf("addr_sample_o: 0x%lx\n", addr_sample_o);
+        }
     }
 
     objs[n].address = NULL;
@@ -71,7 +81,7 @@ int main(int argc, char *argv[])
     link_objs(objs);
     search_symbol(objs, funcname, &obj);
     f = (int (*)())obj.address;
-    printf("[*] \n%s is found at 0x%p (%s).\n\n", funcname, f, obj.filename);
+    printf("[*] \n%s is found at %p (%s).\n\n", funcname, f, obj.filename);
 
     ret = f();
     printf("\n%s return (%d)\n", funcname, ret);

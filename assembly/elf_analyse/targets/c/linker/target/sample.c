@@ -1,8 +1,8 @@
 int pprint(char *s);
 int pprintn(unsigned int n);
 
-int extvalue;
-int extbssvalue;
+extern int extvalue;
+extern int extbssvalue;
 int extfunc(int a, int b);
 
 static int value = 10;
