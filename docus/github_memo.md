@@ -24,6 +24,14 @@
  - アクセストークン使った方がよいかも  
  参考urlの3つ目  
 
+- コマンド
+1. プルしたいとき  
+ `git pull origin [name]`  
+
+2. remoteのブランチをチェックアウトしたいとき  
+ `git fetch origin [branch]`  
+ `git merge origin/[branch]`
+
 - 参考url  
 https://qiita.com/reflet/items/5c6ba6e29fe8436c3185  
 https://qiita.com/reflet/items/4f7b5c4a312bc27df10e  

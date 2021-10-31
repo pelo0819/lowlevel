@@ -20,11 +20,16 @@ static int func()
     return extvalue + extbssvalue + value + bssvalue;
 }
 
+// char *str = "aaa\n";
+int add(int a, int b);
 int sample_main()
 {
-    int ret;
+    int ret = extfunc(6, 9);
+    pprintn(ret);
+    pprint("\n");
     ret = func();
-    pprint("sample_main()\n");
-    pprint("func() = ");pprintn(ret);pprint("\n");
-    return 0;
+    pprint("defg\n");
+    pprintn(259);
+    // pprint("func() = ");pprintn(ret);pprint("\n");
+    return ret;
 }

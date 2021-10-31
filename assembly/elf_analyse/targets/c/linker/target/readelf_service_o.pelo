@@ -8,14 +8,14 @@ Section Headers:
   [ 1] .data             PROGBITS         0000000000000000  00000200
        0000000000000000  0000000000000000  WA       0     0     4
   [ 2] .text             PROGBITS         0000000000000000  00000200
-       0000000000000044  0000000000000000  AX       0     0     16
-  [ 3] .shstrtab         STRTAB           0000000000000000  00000250
+       0000000000000057  0000000000000000  AX       0     0     16
+  [ 3] .shstrtab         STRTAB           0000000000000000  00000260
        0000000000000032  0000000000000000           0     0     1
-  [ 4] .symtab           SYMTAB           0000000000000000  00000290
-       0000000000000108  0000000000000018           5     7     8
-  [ 5] .strtab           STRTAB           0000000000000000  000003a0
-       0000000000000047  0000000000000000           0     0     1
-  [ 6] .rela.text        RELA             0000000000000000  000003f0
+  [ 4] .symtab           SYMTAB           0000000000000000  000002a0
+       0000000000000120  0000000000000018           5     7     8
+  [ 5] .strtab           STRTAB           0000000000000000  000003c0
+       0000000000000056  0000000000000000           0     0     1
+  [ 6] .rela.text        RELA             0000000000000000  00000420
        0000000000000018  0000000000000018           4     2     8
 Key to Flags:
   W (write), A (alloc), X (execute), M (merge), S (strings), I (info),
@@ -23,14 +23,14 @@ Key to Flags:
   C (compressed), x (unknown), o (OS specific), E (exclude),
   l (large), p (processor specific)
 
-Relocation section '.rela.text' at offset 0x3f0 contains 1 entry:
+Relocation section '.rela.text' at offset 0x420 contains 1 entry:
   Offset          Info           Type           Sym. Value    Sym. Name + Addend
 000000000005  000700000002 R_X86_64_PC32     0000000000000000 main - 4
 
-Symbol table '.symtab' contains 11 entries:
+Symbol table '.symtab' contains 12 entries:
    Num:    Value          Size Type    Bind   Vis      Ndx Name
      0: 0000000000000000     0 NOTYPE  LOCAL  DEFAULT  UND 
-     1: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS service.asm
+     1: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS target/service.asm
      2: 0000000000000000     0 SECTION LOCAL  DEFAULT    1 
      3: 0000000000000000     0 SECTION LOCAL  DEFAULT    2 
      4: 000000000000000e     0 NOTYPE  LOCAL  DEFAULT    2 string_length
@@ -39,4 +39,5 @@ Symbol table '.symtab' contains 11 entries:
      7: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT  UND main
      8: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT    2 _start
      9: 000000000000001d     0 NOTYPE  GLOBAL DEFAULT    2 pprint
-    10: 0000000000000039     0 NOTYPE  GLOBAL DEFAULT    2 pexit
+    10: 0000000000000039     0 NOTYPE  GLOBAL DEFAULT    2 pprint2
+    11: 000000000000004c     0 NOTYPE  GLOBAL DEFAULT    2 pexit

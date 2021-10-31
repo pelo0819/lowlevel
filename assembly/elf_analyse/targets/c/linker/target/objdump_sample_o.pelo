@@ -1,5 +1,5 @@
 
-sample.o:     file format elf64-x86-64
+target/sample.o:     file format elf64-x86-64
 
 
 Disassembly of section .text:
@@ -53,18 +53,22 @@ Disassembly of section .text:
   cc:	55                   	push   %rbp
   cd:	48 89 e5             	mov    %rsp,%rbp
   d0:	48 83 ec 10          	sub    $0x10,%rsp
-  d4:	b8 00 00 00 00       	mov    $0x0,%eax
-  d9:	e8 22 ff ff ff       	callq  0 <func>
-  de:	89 45 fc             	mov    %eax,-0x4(%rbp)
-  e1:	48 8d 3d 00 00 00 00 	lea    0x0(%rip),%rdi        # e8 <sample_main+0x20>
-  e8:	e8 00 00 00 00       	callq  ed <sample_main+0x25>
-  ed:	48 8d 3d 00 00 00 00 	lea    0x0(%rip),%rdi        # f4 <sample_main+0x2c>
-  f4:	e8 00 00 00 00       	callq  f9 <sample_main+0x31>
-  f9:	8b 45 fc             	mov    -0x4(%rbp),%eax
-  fc:	89 c7                	mov    %eax,%edi
-  fe:	e8 00 00 00 00       	callq  103 <sample_main+0x3b>
- 103:	48 8d 3d 00 00 00 00 	lea    0x0(%rip),%rdi        # 10a <sample_main+0x42>
- 10a:	e8 00 00 00 00       	callq  10f <sample_main+0x47>
- 10f:	b8 00 00 00 00       	mov    $0x0,%eax
- 114:	c9                   	leaveq 
- 115:	c3                   	retq   
+  d4:	be 09 00 00 00       	mov    $0x9,%esi
+  d9:	bf 06 00 00 00       	mov    $0x6,%edi
+  de:	e8 00 00 00 00       	callq  e3 <sample_main+0x1b>
+  e3:	89 45 fc             	mov    %eax,-0x4(%rbp)
+  e6:	8b 45 fc             	mov    -0x4(%rbp),%eax
+  e9:	89 c7                	mov    %eax,%edi
+  eb:	e8 00 00 00 00       	callq  f0 <sample_main+0x28>
+  f0:	48 8d 3d 00 00 00 00 	lea    0x0(%rip),%rdi        # f7 <sample_main+0x2f>
+  f7:	e8 00 00 00 00       	callq  fc <sample_main+0x34>
+  fc:	b8 00 00 00 00       	mov    $0x0,%eax
+ 101:	e8 fa fe ff ff       	callq  0 <func>
+ 106:	89 45 fc             	mov    %eax,-0x4(%rbp)
+ 109:	48 8d 3d 00 00 00 00 	lea    0x0(%rip),%rdi        # 110 <sample_main+0x48>
+ 110:	e8 00 00 00 00       	callq  115 <sample_main+0x4d>
+ 115:	bf 03 01 00 00       	mov    $0x103,%edi
+ 11a:	e8 00 00 00 00       	callq  11f <sample_main+0x57>
+ 11f:	8b 45 fc             	mov    -0x4(%rbp),%eax
+ 122:	c9                   	leaveq 
+ 123:	c3                   	retq   

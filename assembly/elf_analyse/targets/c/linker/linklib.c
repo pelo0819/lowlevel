@@ -92,7 +92,6 @@ int search_symbol(struct obj objs[], char *name, struct obj *obj)
             symp = (Elf64_Sym *)(head + symtab->sh_offset + i);
             if(is_symbol_table(symp) != 0)
             {
-                // printf("THIS IS NOT SYMBOL\n");
                 continue;
             }
 
@@ -106,12 +105,11 @@ int search_symbol(struct obj objs[], char *name, struct obj *obj)
                 obj->filename = objs[n].filename;
                 obj->address = (char *)(head + shdr->sh_offset + symp->st_value);
                 u_int64_t offset = shdr->sh_offset + symp->st_value;
-                printf("FOUND NAME: %s, FILENAME: %s, offset: 0x%lx\n",name, obj->filename, offset);
                 return 0;
             }
         }
     }
-    printf("NOT FOUND %s\n", name);
+    // printf("[!!!] Not Found Symbol (%s)\n", name);
     return 1;
 }
 
@@ -128,7 +126,7 @@ int is_symbol_table(Elf64_Sym *symp)
         return falsE;
     }
 
-    if(symp->st_shndx == SHN_UNDEF || symp->st_shndx == SHN_ABS)
+    if(symp->st_shndx == SHN_UNDEF || symp->st_shndx == SHN_ABS || symp->st_shndx == SHN_COMMON)
     {
         return falsE;
     }
@@ -171,7 +169,7 @@ u_int8_t get_sym_info_low(u_int8_t info)
 
 }
 
-int relocate_common_symbol(Elf64_Ehdr *ehdr)
+int relocate_common_symbol(Elf64_Ehdr *ehdr, char *file_name)
 {
     int i;
     char *head;
@@ -182,6 +180,18 @@ int relocate_common_symbol(Elf64_Ehdr *ehdr)
     symtab = get_section(ehdr, ".symtab");
     bss = get_section(ehdr, ".bss");
     head = (char *)ehdr;
+
+    if(!symtab)
+    {
+        printf("[!!!] not exist .symtab section in %s\n", file_name);
+        return 1;
+    }
+
+    if(!bss)
+    {
+        printf("[!!!] Not exist .bss section in %s\n", file_name);
+        return 1;
+    }
 
     // symtabがシンボルテーブルのセクションか確認
     if(symtab->sh_entsize != sizeof(Elf64_Sym))
@@ -196,10 +206,7 @@ int relocate_common_symbol(Elf64_Ehdr *ehdr)
     for(i = 0; i < symtab->sh_size; i += symtab->sh_entsize)
     {
         symp = (Elf64_Sym *)(head + symtab->sh_offset + i);
-        if(symp->st_shndx != SHN_COMMON)
-        {
-            continue;
-        }
+        if(symp->st_shndx != SHN_COMMON){ continue; }
         int align = symp->st_value - 1;
         size_bss_sec = (size_bss_sec + align) & ~align;
         // ↓ 違くない？
@@ -259,81 +266,85 @@ static int link_symbol(
         symp = (Elf64_Sym *)(head + symtab->sh_offset +
             (symtab->sh_entsize * ELF64_R_SYM(relp->r_info)));
 
-        // printf("%-10s ", objs[objnum].filename);
-        // printf("fileName: %-10s, ", objs[objnum].filename);
-        // printf("reloctionTableNo: %d, ", cnt);
-        // printf("symbolTableNo: %ld\n", ELF64_R_SYM(relp->r_info));
-        cnt++;
+        printf("%-18s", objs[objnum].filename);
 
         if(symp->st_name)
         {
             // シンボル名を取得
-            // printf("symbolname: %-12s\n", head + strtab->sh_offset + symp->st_name);
+            char *symbol_name = (char *)(head + strtab->sh_offset + symp->st_name);
+            char symbol_rename[12];
+            strncpy(symbol_rename, symbol_name, 12);
+            printf("%-12s", symbol_rename);
         }
 
         switch (symp->st_shndx)
         {
         case SHN_UNDEF:
-            if(!symp->st_name) printf("unknown\n");
+            if(!symp->st_name) printf("unknown");
             char *search_symbol_name;
             search_symbol_name = (char *)(head + strtab->sh_offset + symp->st_name);
-            search_symbol(objs, search_symbol_name, &obj);
-            printf("found symbol %s in %s, addr: %p\n", search_symbol_name, obj.filename, obj.address);
+            int r = search_symbol(objs, search_symbol_name, &obj);
             addr = (u_int64_t)obj.address;
+            if(!r){ printf("%-19s", obj.filename); }
+            else{ printf("%-19s", "Not found"); }
             break;
         case SHN_ABS:
         case SHN_COMMON:
-            printf("invalid ndx\n");
+            printf("invalid Ndx\n");
             break;
         default:
             shdr = (Elf64_Shdr *)(head + ehdr->e_shoff + ehdr->e_shentsize * symp->st_shndx);
-            if(!symp->st_name) printf("sectionName: %s\n", get_section_name(ehdr, shdr));
+            if(!symp->st_name) printf("%-12s", get_section_name(ehdr, shdr));
+            addr = (u_int64_t)(head + shdr->sh_offset + symp->st_value);
+            printf("internal           ");
             break;
         }
 
         addp = (u_int64_t *)(head + defsec->sh_offset + relp->r_offset);
-        printf("addp: %p, ", addp);
-        // u_int64_t t = defsec->sh_offset + relp->r_offset;
-        // printf("offset: %lx(%lx), ", t, relp->r_offset);
-        printf("*addp : 0x%lx\n", *addp);
 
         switch (reltab->sh_type)
         {
         case SHT_REL:
-            printf("SHT_REL\n");
+            printf("REL ");
+            addend = *addp;
             break;
         case SHT_RELA:
             {
-            addend = ((Elf64_Rela *)relp)->r_addend;
+                printf("RELA ");
+                addend = ((Elf64_Rela *)relp)->r_addend;
             }
             break;
         default:
+            printf("%4d", reltab->sh_type);
             break;
         }
+
+        printf("%08x 0x%012lx 0x%12lx ", addend, (u_int64_t)addp, addr);
 
         switch (ELF64_R_TYPE(relp->r_info))
         {
         case R_X86_64_PC32:
-            // rip + 書き込み値 = 実際の位置
-            printf("R_X86_64_PC32\n");
-            u_int64_t rip = (u_int64_t)(addp - addend);
-            // u_int64_t rip = (u_int64_t)(addp + 4);
-            u_int64_t buffer = addr - rip;
-            // buffer = 0x6;
-            // *addp = *addp + buffer;
-            *addp = addend + (addr - (u_int64_t)addp);
-            printf("*addp: 0x%lx, rip: 0x%lx, buffer %lx, addend: %d\n", *addp, rip, buffer, addend);
-            break;
         case R_X86_64_PLT32:
-            printf("R_X86_64_PLT32\n");
+            // rip + 書き込み値 = 実際の位置
+            if(ELF64_R_TYPE(relp->r_info) == R_X86_64_PC32)
+            {
+                printf("R_X86_64_PC32\n");
+            }
+            else
+            {
+                printf("R_X86_64_PLT32\n");
+            }
+            u_int64_t addp_buffer = (u_int64_t)addp;
+            u_int64_t rip = addp_buffer - addend;
+            u_int64_t offset = addr - rip;
+            *addp = *addp + offset;
             break;
         default:
-            printf("unknown\n");
+            printf("unknown(%ld)\n", ELF64_R_TYPE(relp->r_info));
             break;
         }
-
-        printf("\n");
     }
+    return 0;
 }
 
 int link_objs(struct obj objs[])
@@ -346,9 +357,9 @@ int link_objs(struct obj objs[])
     Elf64_Shdr *defsec;
     Elf64_Shdr *symtab;
     Elf64_Shdr *strtab;
-
-    printf("\nfilename  symbol  found  type addend  called defined  rel type\n");
-    printf("---------- ------------ ---------- ---- -------- -------- -------- ------------\n");
+    printf("\n");
+    printf("filename          symbol       found             type addend   called         defined        rel type\n");
+    printf("----------------- ------------ ----------------- ---- -------- -------------- -------------- ------------\n");
 
     // オブジェクトファイル分回す
     for(i = 0; objs[i].filename; i++)
@@ -373,7 +384,6 @@ int link_objs(struct obj objs[])
             {
                 // 再配置テーブルが見つかったら、頭に.をつけて、セクションヘッダ(defsec)を取得
                 name = get_section_name(ehdr, reltab);
-                printf("defsecName: %s\n", name);
                 defsec = get_section(ehdr, strchr(name + 1, '.'));
                 link_symbol(objs, i, ehdr, reltab, defsec, symtab, strtab);
             }

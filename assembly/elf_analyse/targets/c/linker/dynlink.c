@@ -56,9 +56,11 @@ int main(int argc, char *argv[])
         p = (char *)(((u_int64_t)p + Align_16B) & ~Align_16B);
 
         check_ehdr((Elf64_Ehdr *)objs[n].address);
-        relocate_common_symbol((Elf64_Ehdr *)objs[n].address);
 
+        relocate_common_symbol((Elf64_Ehdr *)objs[n].address, objs[n].filename);
+        
         shdr = get_section((Elf64_Ehdr *)objs[n].address, ".bss");
+        
         if(shdr)
         {
             shdr->sh_offset = p - objs[n].address;
@@ -67,12 +69,6 @@ int main(int argc, char *argv[])
         }
 
         p = (char *)(((u_int64_t)p + Align_16B) & ~Align_16B);
-        
-        if(n == 0)
-        {
-            addr_sample_o = (u_int64_t)p;
-            printf("addr_sample_o: 0x%lx\n", addr_sample_o);
-        }
     }
 
     objs[n].address = NULL;

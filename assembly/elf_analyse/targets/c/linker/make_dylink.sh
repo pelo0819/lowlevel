@@ -14,4 +14,6 @@ gcc dynlink.o linklib.o jump.o -o dynlink
 ../loader3/chflg_copy ./dynlink
 chmod 777 ./dynlink_copy
 
-./dynlink_copy sample_main $DIR/sample.o $DIR/sample2.o
+# ./dynlink_copy sample_main $DIR/sample.o $DIR/sample2.o
+# ./dynlink_copy sample_main $DIR/sample.o $DIR/sample2.o $DIR/service.o
+./dynlink_copy sample_main $DIR/sample.o $DIR/sample2.o $DIR/service.o 

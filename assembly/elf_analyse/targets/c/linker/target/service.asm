@@ -1,6 +1,7 @@
 global _start
 global pprint
 global pexit
+global pprint2
 
 extern main
 
@@ -47,6 +48,17 @@ pprint:
 
         pop rdx
         pop rcx
+        ret
+
+; 文字を出力する
+; arg -> rdi : ポインタ
+; arg -> rsi : 出力文字数
+pprint2:
+        mov rax, 1
+        mov rdx, rsi
+        mov rsi, rdi
+        mov rdi, 1      
+        syscall
         ret
 
 ; 終了処理

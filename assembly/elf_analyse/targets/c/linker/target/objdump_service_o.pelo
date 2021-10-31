@@ -1,5 +1,5 @@
 
-service.o:     file format elf64-x86-64
+target/service.o:     file format elf64-x86-64
 
 
 Disassembly of section .text:
@@ -8,7 +8,7 @@ Disassembly of section .text:
    0:	5f                   	pop    %rdi
    1:	48 89 e6             	mov    %rsp,%rsi
    4:	e8 00 00 00 00       	callq  9 <_start+0x9>
-   9:	e8 2b 00 00 00       	callq  39 <pexit>
+   9:	e8 3e 00 00 00       	callq  4c <pexit>
 
 000000000000000e <string_length>:
    e:	48 31 c0             	xor    %rax,%rax
@@ -35,8 +35,16 @@ Disassembly of section .text:
   37:	59                   	pop    %rcx
   38:	c3                   	retq   
 
-0000000000000039 <pexit>:
-  39:	b8 3c 00 00 00       	mov    $0x3c,%eax
-  3e:	48 31 ff             	xor    %rdi,%rdi
-  41:	0f 05                	syscall 
-  43:	c3                   	retq   
+0000000000000039 <pprint2>:
+  39:	b8 01 00 00 00       	mov    $0x1,%eax
+  3e:	48 89 f2             	mov    %rsi,%rdx
+  41:	48 89 fe             	mov    %rdi,%rsi
+  44:	bf 01 00 00 00       	mov    $0x1,%edi
+  49:	0f 05                	syscall 
+  4b:	c3                   	retq   
+
+000000000000004c <pexit>:
+  4c:	b8 3c 00 00 00       	mov    $0x3c,%eax
+  51:	48 31 ff             	xor    %rdi,%rdi
+  54:	0f 05                	syscall 
+  56:	c3                   	retq   

@@ -1,4 +1,4 @@
 
-int extvalue = 20;
+int extvalue = 10;
 
 int func(){ return 5;}
