@@ -1,0 +1,224 @@
+
+target2/sample:     file format elf64-x86-64
+
+
+Disassembly of section .text:
+
+0000000000001000 <__stack_chk_fail>:
+    1000:	f3 0f 1e fa          	endbr64 
+    1004:	55                   	push   %rbp
+    1005:	48 89 e5             	mov    %rsp,%rbp
+    1008:	90                   	nop
+    1009:	5d                   	pop    %rbp
+    100a:	c3                   	retq   
+
+000000000000100b <main>:
+    100b:	f3 0f 1e fa          	endbr64 
+    100f:	55                   	push   %rbp
+    1010:	48 89 e5             	mov    %rsp,%rbp
+    1013:	48 83 ec 20          	sub    $0x20,%rsp
+    1017:	89 7d ec             	mov    %edi,-0x14(%rbp)
+    101a:	48 89 75 e0          	mov    %rsi,-0x20(%rbp)
+    101e:	48 8d 3d db 0f 00 00 	lea    0xfdb(%rip),%rdi        # 2000 <pexit+0xd87>
+    1025:	e8 33 02 00 00       	callq  125d <pprint>
+    102a:	8b 45 ec             	mov    -0x14(%rbp),%eax
+    102d:	89 c7                	mov    %eax,%edi
+    102f:	e8 68 01 00 00       	callq  119c <pprintn>
+    1034:	c7 45 fc 00 00 00 00 	movl   $0x0,-0x4(%rbp)
+    103b:	eb 2f                	jmp    106c <main+0x61>
+    103d:	48 8d 3d c4 0f 00 00 	lea    0xfc4(%rip),%rdi        # 2008 <pexit+0xd8f>
+    1044:	e8 14 02 00 00       	callq  125d <pprint>
+    1049:	8b 45 fc             	mov    -0x4(%rbp),%eax
+    104c:	48 98                	cltq   
+    104e:	48 8d 14 c5 00 00 00 	lea    0x0(,%rax,8),%rdx
+    1055:	00 
+    1056:	48 8b 45 e0          	mov    -0x20(%rbp),%rax
+    105a:	48 01 d0             	add    %rdx,%rax
+    105d:	48 8b 00             	mov    (%rax),%rax
+    1060:	48 89 c7             	mov    %rax,%rdi
+    1063:	e8 f5 01 00 00       	callq  125d <pprint>
+    1068:	83 45 fc 01          	addl   $0x1,-0x4(%rbp)
+    106c:	8b 45 fc             	mov    -0x4(%rbp),%eax
+    106f:	3b 45 ec             	cmp    -0x14(%rbp),%eax
+    1072:	7c c9                	jl     103d <main+0x32>
+    1074:	48 8d 3d 8f 0f 00 00 	lea    0xf8f(%rip),%rdi        # 200a <pexit+0xd91>
+    107b:	e8 dd 01 00 00       	callq  125d <pprint>
+    1080:	b8 00 00 00 00       	mov    $0x0,%eax
+    1085:	e8 7b 01 00 00       	callq  1205 <sample_main>
+    108a:	89 45 fc             	mov    %eax,-0x4(%rbp)
+    108d:	8b 45 fc             	mov    -0x4(%rbp),%eax
+    1090:	89 c7                	mov    %eax,%edi
+    1092:	e8 05 01 00 00       	callq  119c <pprintn>
+    1097:	48 8d 3d 6c 0f 00 00 	lea    0xf6c(%rip),%rdi        # 200a <pexit+0xd91>
+    109e:	e8 ba 01 00 00       	callq  125d <pprint>
+    10a3:	8b 45 fc             	mov    -0x4(%rbp),%eax
+    10a6:	c9                   	leaveq 
+    10a7:	c3                   	retq   
+
+00000000000010a8 <itoa>:
+    10a8:	f3 0f 1e fa          	endbr64 
+    10ac:	55                   	push   %rbp
+    10ad:	48 89 e5             	mov    %rsp,%rbp
+    10b0:	89 7d ec             	mov    %edi,-0x14(%rbp)
+    10b3:	48 89 75 e0          	mov    %rsi,-0x20(%rbp)
+    10b7:	48 8b 45 e0          	mov    -0x20(%rbp),%rax
+    10bb:	48 89 45 f8          	mov    %rax,-0x8(%rbp)
+    10bf:	83 7d ec 00          	cmpl   $0x0,-0x14(%rbp)
+    10c3:	0f 89 c3 00 00 00    	jns    118c <itoa+0xe4>
+    10c9:	48 8b 45 e0          	mov    -0x20(%rbp),%rax
+    10cd:	48 8d 50 01          	lea    0x1(%rax),%rdx
+    10d1:	48 89 55 e0          	mov    %rdx,-0x20(%rbp)
+    10d5:	c6 00 2d             	movb   $0x2d,(%rax)
+    10d8:	f7 5d ec             	negl   -0x14(%rbp)
+    10db:	e9 ac 00 00 00       	jmpq   118c <itoa+0xe4>
+    10e0:	c7 45 f4 00 00 00 00 	movl   $0x0,-0xc(%rbp)
+    10e7:	eb 04                	jmp    10ed <itoa+0x45>
+    10e9:	83 45 f4 01          	addl   $0x1,-0xc(%rbp)
+    10ed:	8b 45 f4             	mov    -0xc(%rbp),%eax
+    10f0:	48 63 d0             	movslq %eax,%rdx
+    10f3:	48 8b 45 e0          	mov    -0x20(%rbp),%rax
+    10f7:	48 01 d0             	add    %rdx,%rax
+    10fa:	0f b6 00             	movzbl (%rax),%eax
+    10fd:	84 c0                	test   %al,%al
+    10ff:	75 e8                	jne    10e9 <itoa+0x41>
+    1101:	eb 27                	jmp    112a <itoa+0x82>
+    1103:	8b 45 f4             	mov    -0xc(%rbp),%eax
+    1106:	48 63 d0             	movslq %eax,%rdx
+    1109:	48 8b 45 e0          	mov    -0x20(%rbp),%rax
+    110d:	48 01 d0             	add    %rdx,%rax
+    1110:	8b 55 f4             	mov    -0xc(%rbp),%edx
+    1113:	48 63 d2             	movslq %edx,%rdx
+    1116:	48 8d 4a 01          	lea    0x1(%rdx),%rcx
+    111a:	48 8b 55 e0          	mov    -0x20(%rbp),%rdx
+    111e:	48 01 ca             	add    %rcx,%rdx
+    1121:	0f b6 00             	movzbl (%rax),%eax
+    1124:	88 02                	mov    %al,(%rdx)
+    1126:	83 6d f4 01          	subl   $0x1,-0xc(%rbp)
+    112a:	83 7d f4 00          	cmpl   $0x0,-0xc(%rbp)
+    112e:	79 d3                	jns    1103 <itoa+0x5b>
+    1130:	8b 4d ec             	mov    -0x14(%rbp),%ecx
+    1133:	48 63 c1             	movslq %ecx,%rax
+    1136:	48 69 c0 67 66 66 66 	imul   $0x66666667,%rax,%rax
+    113d:	48 c1 e8 20          	shr    $0x20,%rax
+    1141:	89 c2                	mov    %eax,%edx
+    1143:	c1 fa 02             	sar    $0x2,%edx
+    1146:	89 c8                	mov    %ecx,%eax
+    1148:	c1 f8 1f             	sar    $0x1f,%eax
+    114b:	29 c2                	sub    %eax,%edx
+    114d:	89 d0                	mov    %edx,%eax
+    114f:	c1 e0 02             	shl    $0x2,%eax
+    1152:	01 d0                	add    %edx,%eax
+    1154:	01 c0                	add    %eax,%eax
+    1156:	29 c1                	sub    %eax,%ecx
+    1158:	89 ca                	mov    %ecx,%edx
+    115a:	48 63 c2             	movslq %edx,%rax
+    115d:	48 8d 15 a8 0e 00 00 	lea    0xea8(%rip),%rdx        # 200c <pexit+0xd93>
+    1164:	0f b6 14 10          	movzbl (%rax,%rdx,1),%edx
+    1168:	48 8b 45 e0          	mov    -0x20(%rbp),%rax
+    116c:	88 10                	mov    %dl,(%rax)
+    116e:	8b 45 ec             	mov    -0x14(%rbp),%eax
+    1171:	48 63 d0             	movslq %eax,%rdx
+    1174:	48 69 d2 67 66 66 66 	imul   $0x66666667,%rdx,%rdx
+    117b:	48 c1 ea 20          	shr    $0x20,%rdx
+    117f:	c1 fa 02             	sar    $0x2,%edx
+    1182:	c1 f8 1f             	sar    $0x1f,%eax
+    1185:	29 c2                	sub    %eax,%edx
+    1187:	89 d0                	mov    %edx,%eax
+    1189:	89 45 ec             	mov    %eax,-0x14(%rbp)
+    118c:	83 7d ec 00          	cmpl   $0x0,-0x14(%rbp)
+    1190:	0f 85 4a ff ff ff    	jne    10e0 <itoa+0x38>
+    1196:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+    119a:	5d                   	pop    %rbp
+    119b:	c3                   	retq   
+
+000000000000119c <pprintn>:
+    119c:	f3 0f 1e fa          	endbr64 
+    11a0:	55                   	push   %rbp
+    11a1:	48 89 e5             	mov    %rsp,%rbp
+    11a4:	48 83 ec 30          	sub    $0x30,%rsp
+    11a8:	89 7d dc             	mov    %edi,-0x24(%rbp)
+    11ab:	64 48 8b 04 25 28 00 	mov    %fs:0x28,%rax
+    11b2:	00 00 
+    11b4:	48 89 45 f8          	mov    %rax,-0x8(%rbp)
+    11b8:	31 c0                	xor    %eax,%eax
+    11ba:	48 c7 45 e0 00 00 00 	movq   $0x0,-0x20(%rbp)
+    11c1:	00 
+    11c2:	48 c7 45 e8 00 00 00 	movq   $0x0,-0x18(%rbp)
+    11c9:	00 
+    11ca:	c7 45 f0 00 00 00 00 	movl   $0x0,-0x10(%rbp)
+    11d1:	8b 45 dc             	mov    -0x24(%rbp),%eax
+    11d4:	48 8d 55 e0          	lea    -0x20(%rbp),%rdx
+    11d8:	48 89 d6             	mov    %rdx,%rsi
+    11db:	89 c7                	mov    %eax,%edi
+    11dd:	e8 c6 fe ff ff       	callq  10a8 <itoa>
+    11e2:	48 8d 45 e0          	lea    -0x20(%rbp),%rax
+    11e6:	48 89 c7             	mov    %rax,%rdi
+    11e9:	e8 6f 00 00 00       	callq  125d <pprint>
+    11ee:	90                   	nop
+    11ef:	48 8b 4d f8          	mov    -0x8(%rbp),%rcx
+    11f3:	64 48 33 0c 25 28 00 	xor    %fs:0x28,%rcx
+    11fa:	00 00 
+    11fc:	74 05                	je     1203 <pprintn+0x67>
+    11fe:	e8 fd fd ff ff       	callq  1000 <__stack_chk_fail>
+    1203:	c9                   	leaveq 
+    1204:	c3                   	retq   
+
+0000000000001205 <sample_main>:
+    1205:	f3 0f 1e fa          	endbr64 
+    1209:	55                   	push   %rbp
+    120a:	48 89 e5             	mov    %rsp,%rbp
+    120d:	c7 05 e9 2d 00 00 05 	movl   $0x5,0x2de9(%rip)        # 4000 <extvalue>
+    1214:	00 00 00 
+    1217:	8b 05 e3 2d 00 00    	mov    0x2de3(%rip),%eax        # 4000 <extvalue>
+    121d:	83 c0 24             	add    $0x24,%eax
+    1220:	89 45 fc             	mov    %eax,-0x4(%rbp)
+    1223:	8b 45 fc             	mov    -0x4(%rbp),%eax
+    1226:	5d                   	pop    %rbp
+    1227:	c3                   	retq   
+
+0000000000001228 <func>:
+    1228:	f3 0f 1e fa          	endbr64 
+    122c:	55                   	push   %rbp
+    122d:	48 89 e5             	mov    %rsp,%rbp
+    1230:	b8 05 00 00 00       	mov    $0x5,%eax
+    1235:	5d                   	pop    %rbp
+    1236:	c3                   	retq   
+    1237:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
+    123e:	00 00 
+
+0000000000001240 <_start>:
+    1240:	5f                   	pop    %rdi
+    1241:	48 89 e6             	mov    %rsp,%rsi
+    1244:	e8 c2 fd ff ff       	callq  100b <main>
+    1249:	e8 2b 00 00 00       	callq  1279 <pexit>
+
+000000000000124e <string_length>:
+    124e:	48 31 c0             	xor    %rax,%rax
+
+0000000000001251 <iterate_strlen>:
+    1251:	80 3c 07 00          	cmpb   $0x0,(%rdi,%rax,1)
+    1255:	74 05                	je     125c <end>
+    1257:	48 ff c0             	inc    %rax
+    125a:	eb f5                	jmp    1251 <iterate_strlen>
+
+000000000000125c <end>:
+    125c:	c3                   	retq   
+
+000000000000125d <pprint>:
+    125d:	51                   	push   %rcx
+    125e:	52                   	push   %rdx
+    125f:	48 89 fe             	mov    %rdi,%rsi
+    1262:	e8 e7 ff ff ff       	callq  124e <string_length>
+    1267:	48 89 c2             	mov    %rax,%rdx
+    126a:	b8 01 00 00 00       	mov    $0x1,%eax
+    126f:	bf 01 00 00 00       	mov    $0x1,%edi
+    1274:	0f 05                	syscall 
+    1276:	5a                   	pop    %rdx
+    1277:	59                   	pop    %rcx
+    1278:	c3                   	retq   
+
+0000000000001279 <pexit>:
+    1279:	b8 3c 00 00 00       	mov    $0x3c,%eax
+    127e:	48 31 ff             	xor    %rdi,%rdi
+    1281:	0f 05                	syscall 
+    1283:	c3                   	retq   
