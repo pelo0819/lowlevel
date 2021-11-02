@@ -1,0 +1,19 @@
+
+main.o:     file format elf64-x86-64
+
+
+Disassembly of section .text:
+
+0000000000000000 <main>:
+   0:	f3 0f 1e fa          	endbr64 
+   4:	55                   	push   %rbp
+   5:	48 89 e5             	mov    %rsp,%rbp
+   8:	48 83 ec 10          	sub    $0x10,%rsp
+   c:	48 8d 3d 00 00 00 00 	lea    0x0(%rip),%rdi        # 13 <main+0x13>
+  13:	e8 00 00 00 00       	callq  18 <main+0x18>
+  18:	bf 03 00 00 00       	mov    $0x3,%edi
+  1d:	e8 00 00 00 00       	callq  22 <main+0x22>
+  22:	89 45 fc             	mov    %eax,-0x4(%rbp)
+  25:	8b 45 fc             	mov    -0x4(%rbp),%eax
+  28:	c9                   	leaveq 
+  29:	c3                   	retq   
