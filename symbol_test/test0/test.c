@@ -2,9 +2,10 @@
 
 int main()
 {
-    // printf("hello\n");
-    puts("godd\n");
-    puts("godddd\n");
+    printf("hello\n");
+    printf("goodbye\n");
+    //puts("godd\n");
+    //puts("godddd\n");
     return 5;
 }
 

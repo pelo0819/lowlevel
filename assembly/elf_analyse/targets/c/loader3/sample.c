@@ -1,6 +1,6 @@
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
+// #include <stdio.h>
+// #include <string.h>
+// #include <stdlib.h>
 
 
 extern int pprint(char *str);
@@ -17,7 +17,6 @@ int main(int argc, char *argv[])
     strncat(str, "\n", 2);
     itoa(55, str);
 
-    pprint(cat);
     pprint(str);
 
     char arg[128] = {'\0'};
@@ -31,10 +30,6 @@ int main(int argc, char *argv[])
     pprint(argv[1]);
     pprint("\n");
     
-    pprint(argv[2]);
-    pprint("\n");
-    
-    // pprint(argv[3]);
     pprint("\n");
 
     return 0;
