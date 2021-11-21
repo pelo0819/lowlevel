@@ -1,7 +1,7 @@
 #include <stdio.h>
-#include <string.h>
+//#include <string.h>
 // #include <stdlib.h>
-
+#include "sample_lib.h"
 
 extern int pprint(char *str);
 char *itoa(int val, char *str);
@@ -33,10 +33,25 @@ int main(int argc, char *argv[])
 
     char *str = "hello\n";
     pprint(str);
-    puts(str);
-    // puts("hello");
     
-    return 0;
+    int a = func(5);
+    char str2[20] ={'\0'};
+    itoa(a, str2);
+    pprint(str2);
+    pprint("\n");
+
+    int b = func2(6);
+    char str3[20] ={'\0'};
+    itoa(b, str3);
+    pprint(str3);
+    pprint("\n");
+    
+    
+    
+    //puts(str);
+    // puts("hello");
+
+    return a;
 }
 
 char *itoa(int val, char *str)

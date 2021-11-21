@@ -1,40 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <fcntl.h>
-#include <unistd.h>
-#include <elf.h>
-#include <sys/stat.h>
-#include <sys/mman.h>
-#include <string.h>
-#include <dlfcn.h>
-
-#define Align_4KB 4095
-// #define USE_LOADER_ARGV
-
-extern int say();
-extern int add(int a, int b);
-extern int jump(void* e, int argc, char** argv);
-
-extern int _start_empty_text;
-extern int _end_empty_text;
-
-u_int64_t ent = 0;
-
-typedef void (*func_t)();
-
-void *test();
-static Elf64_Shdr *get_shdr(Elf64_Ehdr *ehdr, int num);
-static Elf64_Shdr *search_shdr(Elf64_Ehdr *ehdr, char *name);
-int IsElf(Elf64_Ehdr *ehdr);
-static func_t load_file(u_int8_t *head);
-
-static char *get_section_name(Elf64_Ehdr *ehdr, Elf64_Shdr *shdr);
-Elf64_Shdr *get_section(Elf64_Ehdr *ehdr, char *name);
-void *search_symbol_in_exec(u_int8_t *head, char *name);
-int is_symbol_table(Elf64_Sym *symp);
-int dynamic_link(void *head, void *pp);
-void *load_common_lib(char *path);
-void *search_symbol_in_common_lib(char *lib_path, char *name);
+#include "loader.h"
 
 int main(int argc, char *argv[])
 {
@@ -49,15 +13,9 @@ int main(int argc, char *argv[])
     u_int8_t *head = NULL;
     func_t f;
     static char file_name[128];
-    
-    // void *handle = dlopen("/lib/x86_64-linux-gnu/libc.so.6", RTLD_LAZY);
-    char *path = "/lib/x86_64-linux-gnu/libc.so.6";
-    void *put = search_symbol_in_common_lib(path, "puts");
-    
-#ifdef USE_LOADER_ARGV
-    static char **stackp;
-#endif
 
+    // void *handle = dlopen("/lib/x86_64-linux-gnu/libc.so.6", RTLD_LAZY);
+    
     strcpy(file_name, argv[1]);
     printf("[*] attempt to open file. (%s)\n", file_name);
     
@@ -70,15 +28,7 @@ int main(int argc, char *argv[])
     printf("[*] success open file. (%s)\n", file_name);
 
     fstat(fd, &sb);
-    head = mmap(
-        NULL, 
-        sb.st_size, 
-        // PROT_READ | PROT_WRITE, 
-        PROT_WRITE | PROT_EXEC, 
-        MAP_SHARED, 
-        fd, 
-        0);
-
+    head = mmap(NULL, sb.st_size, PROT_READ, MAP_SHARED, fd, 0);
     printf("[*] head=%p, file size=%ld\n", head, sb.st_size);
 
     f = load_file(head);
@@ -89,8 +39,7 @@ int main(int argc, char *argv[])
     }
     close(fd);
 
-    printf("[*] jump to entry point\n");
-
+    // main()の引数を設定する
     int i = 0;
     char **argv2;
     argv2 = (char **)malloc(sizeof(char *) * (argc - 1));
@@ -101,14 +50,22 @@ int main(int argc, char *argv[])
         strcpy(argv2[i], argv[i + 1]);
     }
 
+    // 通常なら動的リンカが解決するシンボルを前もって解決する
+    char *path = "./static/libsample.so";
+    dynamic_link(head, path);
+
+    // 実行形式からmain()のシンボルを検索してアドレスを取得する
     char *symbol = "main";
     void *addr;
     addr = search_symbol_in_exec(head, symbol);
-    dynamic_link(head, put);
-    printf("[*] addr(%s): %p\n", symbol, addr);
-    printf("=========================\n");
+
+    // エントリーポイント(main関数)にジャンプする
+    printf("[*] entry point(%s): %p\n", symbol, addr);
+    printf("[*] jump to entry point\n");
+
+    printf("\n.........................\n");
     int d = jump(addr, argc - 1, argv2);
-    printf("=========================\n");
+    printf(".........................\n\n");
     printf("[*] ret = %d\n", d);
 
     for(int i = 0; i < argc - 1; i++)
@@ -237,8 +194,7 @@ static func_t load_file(u_int8_t *head)
     }
 
     f = (func_t)(ehdr->e_entry);
-    printf("[*] Entry point: 0x%lx\n", (u_int64_t)f);
-
+    // printf("[*] Entry point: 0x%lx\n", (u_int64_t)f);
     return f;
 }
 
@@ -381,8 +337,15 @@ int is_symbol_table(Elf64_Sym *symp)
     return 0; // true
 }
 
-int dynamic_link(void *head, void *pp)
+/*
+実行形式の動的リンクを行う
+head: 実行形式のロード先頭アドレス
+path: 実行形式が使用している共有ライブラリのパス
+*/
+int dynamic_link(void *head, char *path)
 {
+    void *lib_head = load_common_lib(path);
+
     Elf64_Ehdr *ehdr = (Elf64_Ehdr *)head;
     Elf64_Shdr *dymsym = get_section(ehdr, ".dynsym");
     if(!dymsym)
@@ -406,29 +369,25 @@ int dynamic_link(void *head, void *pp)
 
     Elf64_Rela *relp;
     Elf64_Sym *dymp;
+    void *sym_addr;
     for(int i = 0; i < reltab->sh_size; i += reltab->sh_entsize)
     {
         relp = (Elf64_Rela *)(head + reltab->sh_offset + i);
         dymp = (Elf64_Sym *)(head + dymsym->sh_offset +
             (dymsym->sh_entsize * ELF64_R_SYM(relp->r_info)));
         
+        char *sym_name;
         if(dymp->st_name)
         {
-            char *symbol_name = (char *)(head + dynstr->sh_offset + dymp->st_name);
-            printf("symbol name: %s\n", symbol_name);
+            sym_name = (char *)(head + dynstr->sh_offset + dymp->st_name);
         }
-        printf("offset: %lx\n", relp->r_offset);
-
-        printf("put addr: %p\n", pp);
-    
+        // printf("offset: %lx\n", relp->r_offset);
         u_int64_t *addp;
         addp = (u_int64_t *)(relp->r_offset);
-        printf("addp: %p, 0x%lx\n", addp, *addp);
-        *addp = pp;
-        // *addp = 0x50129a;
-        printf("2addp: %p, 0x%lx\n", addp, *addp);
+        // printf("addp: %p, 0x%lx\n", addp, *addp);
+        *addp = (u_int64_t)get_symbol_addr_in_common_lib(lib_head, sym_name);
+        // printf("2addp: %p, 0x%lx\n", addp, *addp);
     }
-
     return 0;
 }
 
@@ -444,16 +403,14 @@ void *load_common_lib(char *path)
 
     fstat(fd, &sb);
     void *lib_head;
-    lib_head = mmap(NULL, sb.st_size, PROT_EXEC, MAP_SHARED, fd, 0);
+    lib_head = mmap(NULL, sb.st_size, PROT_READ | PROT_EXEC, MAP_SHARED, fd, 0);
 
-    printf("lib_head: %p, size: %d\n", lib_head, sb.st_size);
-
+    // printf("lib_head: %p, size: %d\n", lib_head, sb.st_size);
     return lib_head;
 }
 
-void *search_symbol_in_common_lib(char *lib_path, char *name)
+void *get_symbol_addr_in_common_lib(void *head, char *name)
 {
-    void *head = load_common_lib(lib_path);
     Elf64_Ehdr *ehdr = (Elf64_Ehdr *)head;
     Elf64_Shdr *dymsym = get_section(ehdr, ".dynsym");
     if(!dymsym)
@@ -469,13 +426,15 @@ void *search_symbol_in_common_lib(char *lib_path, char *name)
         return NULL;
     }
 
+    // TODO: シンボル解決する必要がある共有ライブラリがたぶんある
+    /*
     Elf64_Shdr *reltab = get_section(ehdr, ".rela.plt");
     if(!reltab)
     {
         printf("[!!!] .rela.plt not exist\n");
         return NULL;
     }
-
+    */
     Elf64_Rela *relp;
     Elf64_Sym *dymp;
     for(int i = 0; i < dymsym->sh_size / dymsym->sh_entsize; i++)
@@ -484,15 +443,21 @@ void *search_symbol_in_common_lib(char *lib_path, char *name)
         if(dymp->st_name)
         {
             char *sym_name = (char *)(head + dynstr->sh_offset + dymp->st_name);
-            // printf("sym name: %s\n", sym_name);
-            if(!strcmp(sym_name, "puts"))
+            if(!strcmp(sym_name, name))
             {
-                u_int64_t p = dymp->st_value + (u_int64_t)head;
-                printf("HIT!!!!!!!!!!! %s, offset: 0x%lx, head: %p, 0x%lx\n", sym_name, dymp->st_value, head, p);
-                return (void *)(head + dymp->st_value);
+                u_int64_t sym_addr = dymp->st_value + (u_int64_t)head;
+                printf("[*] found symbol(%s) at 0x%lx\n", sym_name, sym_addr);
+                return (void *)sym_addr;
             }
         }
     }
     return NULL;
+}
+
+void printp(char *str)
+{
+#ifdef SHOW_LOG
+    printf(str);
+#endif
 }
 

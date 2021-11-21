@@ -1,0 +1,2 @@
+
+LD_TRACE_LOADED_OBJECTS=1 $1 | grep $2
